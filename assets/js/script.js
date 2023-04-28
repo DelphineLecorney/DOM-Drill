@@ -12,13 +12,12 @@ for (let i = 0; i < children.length; i++) {
 
 // Vérifier si l'élément "Fast and Furious" est le premier élément
 const firstChild = ul.firstElementChild;
-if(firstChild.textContent === "Fast and Furious" && ul.children[0] !== firstChild){
+if(firstChild.textContent === "Fast and Furious") {
     // Si ce n'est pas le cas, insertBefore pour le mettre
-    ul.insertBefore(firstChild, ul.firstChild);
+    ul.insertBefore(firstChild, ul.firstElementChild);
     console.log(firstChild);
 }
 
 // Ajouter la classe .important à "Fast and Furious"
-if (children.textContent === "Fast and Furious") {
-    children[i].classList.add("important");
-};
+const fastAndFurious = document.querySelector('li:first-of-type');
+fastAndFurious.classList.add("important");
