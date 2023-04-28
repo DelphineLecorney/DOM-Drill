@@ -32,3 +32,21 @@ childrenClick.forEach(function (element) {
     alert(element.textContent);
   });
 });
+
+// Supprimez les doublons à l'aide de removeChild
+// sélectionne l'élément qui contient les doublons
+const element = document.getElementsByTagName('li');
+// boucle à travers chaque élément enfant
+for (let i = 0; i < element.length; i++) {
+  for (let j = i + 1; j < element.length; j++) { // puis boucle sur les suivants
+    if (element[i].textContent === element[j].textContent && element[i].isEqualNode(element[j])) {
+      // supprime l'élément en double
+      element[j].parentNode.removeChild(element[j]);
+      j--;
+    }
+  }
+}
+
+
+// Créez un nouveau div avant la liste, en utilisant createElement et insertBefore
+
