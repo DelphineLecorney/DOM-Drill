@@ -9,3 +9,12 @@ for (let i = 0; i < children.length; i++) {
     console.log(children[i]);
   }
 }
+
+// Vérifier si l'élément "Fast and Furious" est le premier élément
+const firstChild = ul.firstElementChild;
+if(firstChild.textContent === "Fast and Furious" && ul.children[0] !== firstChild){
+    // Si ce n'est pas le cas, insertBefore pour le mettre
+    ul.insertBefore(firstChild, ul.firstChild);
+    console.log(firstChild);
+}
+
