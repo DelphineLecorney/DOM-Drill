@@ -18,3 +18,7 @@ if(firstChild.textContent === "Fast and Furious" && ul.children[0] !== firstChil
     console.log(firstChild);
 }
 
+// Ajouter la classe .important à "Fast and Furious"
+if (children.textContent === "Fast and Furious") {
+    children[i].classList.add("important");
+};
