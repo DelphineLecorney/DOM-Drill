@@ -12,6 +12,7 @@ for (let i = 0; i < children.length; i++) {
   }
 }
 
+
 // Vérifier si l'élément "Fast and Furious" est le premier élément
 const firstChild = ul.firstElementChild;
 if (firstChild.textContent === "Fast and Furious") {
@@ -19,6 +20,7 @@ if (firstChild.textContent === "Fast and Furious") {
   ul.insertBefore(firstChild, ul.firstElementChild);
   console.log(firstChild);
 }
+
 
 // Ajouter la classe .important à "Fast and Furious"
 const fastAndFurious = document.querySelector("li:first-of-type");
@@ -33,6 +35,7 @@ childrenClick.forEach(function (element) {
   });
 });
 
+
 // Supprimez les doublons à l'aide de removeChild
 // sélectionne l'élément qui contient les doublons
 const element = document.getElementsByTagName('li');
@@ -46,6 +49,7 @@ for (let i = 0; i < element.length; i++) {
     }
   }
 }
+
 // Ajouter un eventListener, trier la liste mais laisser "Fast and Furious" en premier élément
 
 
@@ -55,3 +59,23 @@ for (let i = 0; i < element.length; i++) {
 // Créez un nouveau div avant la liste, en utilisant createElement et insertBefore
 const newDiv = document.createElement('div');
 ul.parentNode.insertBefore(newDiv, ul);
+
+// À l'aide de createElement, créez une balise select dans la div créée précédemment, 
+// avec deux options : 'franchises importantes' et 'franchises normales'
+const createSelect = document.createElement('select');
+const optionImportant = document.createElement('option');
+const optionNormal = document.createElement('option');
+
+optionImportant.textContent = 'franchises importantes';
+optionNormal.textContent = 'franchises normales';
+
+newDiv.appendChild(createSelect);
+createSelect.appendChild(optionImportant);
+createSelect.appendChild(optionNormal);
+
+
+
+
+
+
+// 
