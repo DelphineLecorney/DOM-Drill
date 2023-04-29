@@ -31,18 +31,13 @@ const childrenClick = document.querySelectorAll("li");
 childrenClick.forEach(function (element) {
   element.addEventListener("click", function () {
     alert(element.textContent);
+  // Ajoutez une condition spéciale à la fonction précédente si 
+  // l'élément cliqué est Fast and Furious
+    if(element.textContent === "Fast and Furious") {
+  alert("The most important franchise ever, the story of DOM(inic) Toretto's family. It's not about car, it's about family.");
+};
   });
 });
-
-/* Ajoutez une condition spéciale à la fonction précédente si l'élément cliqué est 
-Fast and Furious l'alerte () devrait afficher La franchise la plus importante 
-de tous les temps, l'histoire de la famille de DOM (inic) Toretto. 
-Ce n'est pas une question de voiture, c'est une question de famille. */
-
-
-
-
-
 
 // Supprimez les doublons à l'aide de removeChild
 const element = ul.getElementsByTagName('li');
