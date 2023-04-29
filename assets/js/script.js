@@ -74,8 +74,19 @@ createSelect.appendChild(optionImportant);
 createSelect.appendChild(optionNormal);
 
 
+// Ajout d'un eventListener au select
+createSelect.addEventListener('click', (option) => {
+  let selectOption = option.target.value;
+  if (selectOption === 'franchises importantes'){
+    let selectShow = document.querySelectorAll('.important');
+    selectShow.forEach((element) => {
+      element.style.visibility = 'visible';
+    });
+  }else{
+    let selectHide = document.querySelectorAll(':not(.important)');
+    selectHide.forEach((element) => {
+      element.style.visibility = 'hidden';
+    });
+  };
+});
 
-
-
-
-// 
