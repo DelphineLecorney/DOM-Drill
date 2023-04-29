@@ -46,7 +46,12 @@ for (let i = 0; i < element.length; i++) {
     }
   }
 }
+// Ajouter un eventListener, trier la liste mais laisser "Fast and Furious" en premier élément
+
+
+//Modifier la fonction précédente, lorsqu'on appuie sur "d" "Fast and Furious" est cloné
 
 
 // Créez un nouveau div avant la liste, en utilisant createElement et insertBefore
-
+const newDiv = document.createElement('div');
+ul.parentNode.insertBefore(newDiv, ul);
