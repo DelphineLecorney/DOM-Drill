@@ -7,24 +7,23 @@ const children = ul.childNodes;
 // Boucle sur les enfants de l'ul
 for (let i = 0; i < children.length; i++) {
   // Vérifie si le noeud enfant est bien un noeud élément
-  if (children[i].nodeType === 1) {
-    console.log(children[i]);
+  const child = children[i];
+  if (child.nodeType === 1) {
+    console.log(child);
   }
 }
 
-
 // Vérifier si l'élément "Fast and Furious" est le premier élément
-const firstChild = ul.firstElementChild;
-if (firstChild.textContent === "Fast and Furious") {
-  // Si ce n'est pas le cas, insertBefore pour le mettre
-  ul.insertBefore(firstChild, ul.firstElementChild);
-  console.log(firstChild);
+const firstChild = ul.querySelector("li:first-child");
+if (firstChild.textContent !== "Fast and Furious") {
+  // Si ce n'est pas le cas, insérer "Fast and Furious" au début de la liste
+  const newChild = document.createElement("li");
+  newChild.textContent = "Fast and Furious";
+  ul.insertBefore(newChild, ul.firstChild);
+  // Ajouter la classe .important à "Fast and Furious"
+  newChild.classList.add("important");
 }
 
-
-// Ajouter la classe .important à "Fast and Furious"
-const fastAndFurious = document.querySelector("li:first-of-type");
-fastAndFurious.classList.add("important");
 
 // Ajouter un eventListener sur chaque élément de la liste
 // et ajouter une alerte pour affficher l'élément cliqué
@@ -35,25 +34,76 @@ childrenClick.forEach(function (element) {
   });
 });
 
+/* Ajoutez une condition spéciale à la fonction précédente si l'élément cliqué est 
+Fast and Furious l'alerte () devrait afficher La franchise la plus importante 
+de tous les temps, l'histoire de la famille de DOM (inic) Toretto. 
+Ce n'est pas une question de voiture, c'est une question de famille. */
+
+
+
+
+
 
 // Supprimez les doublons à l'aide de removeChild
-// sélectionne l'élément qui contient les doublons
-const element = document.getElementsByTagName('li');
-// boucle à travers chaque élément enfant
+const element = ul.getElementsByTagName('li');
 for (let i = 0; i < element.length; i++) {
-  for (let j = i + 1; j < element.length; j++) { // puis boucle sur les suivants
-    if (element[i].textContent === element[j].textContent && element[i].isEqualNode(element[j])) {
-      // supprime l'élément en double
-      element[j].parentNode.removeChild(element[j]);
+  const listElement = element[i];
+  for (let j = i + 1; j < element.length; j++) {
+    const nextElement = element[j];
+    if (listElement.textContent === nextElement.textContent) {
+      ul.removeChild(nextElement);
       j--;
     }
   }
 }
 
+/* Pas réussi avec isEqualNode() de supprimer tous les doublons
+L'élément déplacé est un doublon et impossible de supprimer 
+sa place d'origine :
+const elementList = ul.getElementsByTagName('li');
+for (let i = 0; i < elementList.length; i++) {
+  const currentElement = elementList[i];
+  for (let j = i + 1; j < elementList.length; j++) {
+    const nextElement = elementList[j];
+    if (currentElement.textContent === nextElement.textContent && currentElement.isEqualNode(nextElement)) {
+      ul.removeChild(nextElement);
+      j--;
+    }
+  }
+} */
+
+
+
 // Ajouter un eventListener, trier la liste mais laisser "Fast and Furious" en premier élément
+const list = document.getElementById("li");
+document.addEventListener("keyup", function(event) {
+  if (event.key === "r") { 
+    let firstItem = list.querySelector("li:first-child");
+    // Obtenez une liste de tous les éléments sauf le premier
+    let itemsToSort = Array.from(list.querySelectorAll("li:not(:first-child)"));
+    // Triez les éléments de manière aléatoire
+    itemsToSort.sort(function(a, b) {
+      return Math.random() - 0.5;
+    });
+    // Ajouter le premier élément à la liste triée
+    let sortedItems = [firstItem];
+    // Ajouter les autres éléments triés à la liste
+    sortedItems = sortedItems.concat(itemsToSort);
+    // Effacer la liste existante
+    while (list.children) {
+      list.removeChild(list.children);
+    }
+    // Ajouter les éléments triés à la liste
+    sortedItems.forEach(function(item) {
+      list.appendChild(item);
+    });
+  }
+});
 
 
 //Modifier la fonction précédente, lorsqu'on appuie sur "d" "Fast and Furious" est cloné
+
+
 
 
 // Créez un nouveau div avant la liste, en utilisant createElement et insertBefore
