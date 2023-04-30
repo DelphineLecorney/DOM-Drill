@@ -70,12 +70,13 @@ for (let i = 0; i < elementList.length; i++) {
 
 
 // Ajouter un eventListener, trier la liste mais laisser "Fast and Furious" en premier élément
-const list = document.getElementById("li");
+
+
 document.addEventListener("keyup", function(event) {
-  if (event.key === "r") { 
-    let firstItem = list.querySelector("li:first-child");
+  if (event.key === "r") {
+    let firstItem = ul.querySelector("li:first-child");
     // Obtenez une liste de tous les éléments sauf le premier
-    let itemsToSort = Array.from(list.querySelectorAll("li:not(:first-child)"));
+    let itemsToSort = Array.from(ul.querySelectorAll("li:not(:first-child)"));
     // Triez les éléments de manière aléatoire
     itemsToSort.sort(function(a, b) {
       return Math.random() - 0.5;
@@ -84,22 +85,21 @@ document.addEventListener("keyup", function(event) {
     let sortedItems = [firstItem];
     // Ajouter les autres éléments triés à la liste
     sortedItems = sortedItems.concat(itemsToSort);
-    // Effacer la liste existante
-    while (list.children) {
-      list.removeChild(list.children);
+    // Effacer la ule existante
+    while (ul.firstChild) {
+      ul.removeChild(ul.firstChild);
     }
     // Ajouter les éléments triés à la liste
     sortedItems.forEach(function(item) {
-      list.appendChild(item);
+      ul.appendChild(item);
     });
+    //Modifier la fonction précédente, lorsqu'on appuie sur "d" "Fast and Furious" est cloné
+  } else if (event.key === "d") {
+    let firstItem = ul.querySelector("li:first-child");
+    let clonedItem = firstItem.cloneNode(true);
+    ul.appendChild(clonedItem);
   }
 });
-
-
-//Modifier la fonction précédente, lorsqu'on appuie sur "d" "Fast and Furious" est cloné
-
-
-
 
 // Créez un nouveau div avant la liste, en utilisant createElement et insertBefore
 const newDiv = document.createElement('div');
@@ -127,11 +127,18 @@ createSelect.addEventListener('click', (option) => {
     selectShow.forEach((element) => {
       element.style.visibility = 'visible';
     });
-  }else{
+    document.querySelector('select').style.visibility = 'visible';
+  } else if (selectOption === 'tous') {
+    let selectAll = document.querySelectorAll('option');
+    selectAll.forEach((element) => {
+      element.style.visibility = 'visible';
+    });
+    document.querySelector('select').style.visibility = 'visible';
+  } else {
     let selectHide = document.querySelectorAll(':not(.important)');
     selectHide.forEach((element) => {
       element.style.visibility = 'hidden';
     });
+    document.querySelector('select').style.visibility = 'visible';
   };
 });
-
